@@ -21,7 +21,7 @@ class Ranger(tf.keras.optimizers.Optimizer):
         weight_decay : float
             number with which the weights of the model are multiplied each iteration (0<=weight_decay<=1)
         amsgrad : bool
-            parameter that specifies whether to use amsgrad version of Adam
+            parameter that specifies whether to use amsgrad version of Adam (https://arxiv.org/abs/1904.03590)
         total_steps : int
             total number of training steps
         warmup_proportion : float

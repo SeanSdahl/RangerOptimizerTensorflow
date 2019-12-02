@@ -1,5 +1,5 @@
 # RangerOptimizerTensorflow
-This code is a combination of the two TensorFlow addons optimizers. The code is mostly copied from there but slightly modified.
+This code is a combination of two TensorFlow addons optimizers. The code is mostly copied from there but slightly modified.
 ## Use
 This TensorFlow optimizer combines the two <code>tf.keras.optimizers</code> RAdam and Lookahead into one optimizer called Ranger. This can instantly be fed into the <code>tf.keras.model.fit</code> / <code>tf.keras.model.fit_generator</code> method to fit a model using this optimizer. All the setting of the hyper parameters can therefore be done in a single step. 
 ## Setup

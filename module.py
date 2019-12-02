@@ -46,8 +46,83 @@ class Ranger(tf.keras.optimizers.Optimizer):
                  k=6,
                  alpha=0.5,
                  **kwargs):
+        """
+            Parameters
+            ----------
+            learning_rate / lr : float
+                step size to take for RAdam optimizer (depending on gradient)
+            beta_1 : float
+                parameter that specifies the exponentially moving average length for momentum (0<=beta_1<=1)
+            beta_2 : float
+                parameter that specifies the exponentially moving average length for variance (0<=beta_2<=1)
+            epsilon : float
+                small number to cause stability for variance division
+            weight_decay : float
+                number with which the weights of the model are multiplied each iteration (0<=weight_decay<=1)
+            amsgrad : bool
+                parameter that specifies whether to use amsgrad version of Adam (https://arxiv.org/abs/1904.03590)
+            total_steps : int
+                total number of training steps
+            warmup_proportion : float
+                the proportion of updated over which the learning rate is increased from min learning rate to learning rate (0<=warmup_proportion<=1)
+            min_lr : float
+                learning rate at which the optimizer starts
+            k : int
+                parameter that specifies after how many steps the lookahead step backwards should be applied
+            alpha : float
+                parameter that specifies how much in the direction of the fast weights should be moved (0<=alpha<=1)
+        """
         class RAdam(tf.keras.optimizers.Optimizer):
+            """
+                tf.keras optimizer (https://arxiv.org/abs/1908.03265)
+                can be fed into the model.compile method of a tf.keras model as an optimizer
+                here used as inner optimizer for Lookahead
+                modification of Adam optimizer to be more stable
+                ...
+                Attributes
+                ----------
+                learning_rate / lr : float
+                    step size to take for RAdam optimizer (depending on gradient)
+                beta_1 : float
+                    parameter that specifies the exponentially moving average length for momentum (0<=beta_1<=1)
+                beta_2 : float
+                    parameter that specifies the exponentially moving average length for variance (0<=beta_2<=1)
+                epsilon : float
+                    small number to cause stability for variance division
+                weight_decay : float
+                    number with which the weights of the model are multiplied each iteration (0<=weight_decay<=1)
+                amsgrad : bool
+                    parameter that specifies whether to use amsgrad version of Adam (https://arxiv.org/abs/1904.03590)
+                total_steps : int
+                    total number of training steps
+                warmup_proportion : float
+                    the proportion of updated over which the learning rate is increased from min learning rate to learning rate (0<=warmup_proportion<=1)
+                min_lr : float
+                    learning rate at which the optimizer starts
+            """
             def __init__(self):
+                """
+                    Parameters
+                    ----------
+                    learning_rate / lr : float
+                        step size to take for RAdam optimizer (depending on gradient)
+                    beta_1 : float
+                        parameter that specifies the exponentially moving average length for momentum (0<=beta_1<=1)
+                    beta_2 : float
+                        parameter that specifies the exponentially moving average length for variance (0<=beta_2<=1)
+                    epsilon : float
+                        small number to cause stability for variance division
+                    weight_decay : float
+                        number with which the weights of the model are multiplied each iteration (0<=weight_decay<=1)
+                    amsgrad : bool
+                        parameter that specifies whether to use amsgrad version of Adam (https://arxiv.org/abs/1904.03590)
+                    total_steps : int
+                        total number of training steps
+                    warmup_proportion : float
+                        the proportion of updated over which the learning rate is increased from min learning rate to learning rate (0<=warmup_proportion<=1)
+                    min_lr : float
+                        learning rate at which the optimizer starts
+                """
                 super(RAdam, self).__init__(name='RAdam')
                 self._set_hyper('learning_rate', kwargs.get('lr', learning_rate))
                 self._set_hyper('beta_1', beta_1)

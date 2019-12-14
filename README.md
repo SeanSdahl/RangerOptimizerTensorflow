@@ -1,5 +1,5 @@
 # RangerOptimizerTensorflow
-This code is a combination of two TensorFlow addons optimizers. The code is mostly copied from there but slightly modified.
+This code is a combination of two TensorFlow addons optimizers. The code is mostly loaded from there but slightly modified.
 ## Use
 This TensorFlow optimizer combines the two <code>tf.keras.optimizers</code> RAdam and Lookahead into one optimizer called Ranger. This can instantly be fed into the <code>tf.keras.model.fit</code> / <code>tf.keras.model.fit_generator</code> method to fit a model using this optimizer. All the setting of the hyper parameters can therefore be done in a single step. 
 ## Setup
@@ -7,7 +7,7 @@ The python files were created for python version 3.7, although it might also wor
 To use this class, some python modules need to be installed first. Using <code>pip</code> the packages can be installed by either typing 
 <code>pip install -r requirements.txt</code>
 in terminal, if the requirements.txt file exists in the current working directory or by typing
-<code>pip install tensorflow==2.0.0</code>
+<code>pip install tensorflow==2.0.0 tensorflow-addons==0.6.0</code>
 into the terminal (!python and pip need to be installed first, the recommended version for pip is at least 19.3.1). The versions of the modules listed above were used at the time of the creation of these files but future versions of these modules might alos work. Another way to install these packages is by using <code>conda</code>.
 ## Code
 For using the optimizer there are two options:
